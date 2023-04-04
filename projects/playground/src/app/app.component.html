@@ -1,3 +1,36 @@
 <div class="container">
   <h1>Hello Playground</h1>
+  <form (submit)="onSubmit($event)">
+    <div class="form-group mb-2">
+      <label for="email" class="form-label mt-4">Email address</label>
+      <input
+        #email
+        type="email"
+        class="form-control"
+        id="email"
+        aria-describedby="emailHelp"
+        placeholder="Enter email"
+      >
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group mb-2">
+      <label for="password" class="form-label mt-4">Email address</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        placeholder="Password"
+      >
+    </div>
+    <div class="form-group mb-4">
+      <label for="confirm-password" class="form-label mt-4">Email address</label>
+      <input
+        type="password"
+        class="form-control"
+        id="confirm-password"
+        placeholder="Confirm password"
+      >
+    </div>
+    <button class="btn btn-success">Inscription</button>
+  </form>
 </div>
