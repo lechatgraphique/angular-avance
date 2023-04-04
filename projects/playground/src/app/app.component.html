@@ -39,26 +39,68 @@
       </small>
     </div>
     <div class="form-group mb-2">
-      <label for="password" class="form-label mt-4">Email address</label>
+      <label for="password" class="form-label mt-4">Password</label>
       <input
         ngModel
+        #password="ngModel"
         name="password"
         type="password"
         class="form-control"
         id="password"
         placeholder="Password"
+        required
+        minlength="3"
+        [class.is-invalid]="password.touched && password.invalid"
+        [class.is-valid]="password.touched && password.valid"
       >
+      <small
+        id="passwordErrorRequired"
+        class="form-text"
+        [class.invalid-feedback]="password.touched && password.invalid"
+        *ngIf="password.touched && password.hasError('required')"
+      >
+        Mot de passe obligatoire
+      </small>
+      <small
+        id="passwordErrorMinLength"
+        class="form-text"
+        [class.invalid-feedback]="password.touched && password.invalid"
+        *ngIf="password.touched && password.hasError('minlength')"
+      >
+        Le mot de passe doit faire plus de 3 caractères
+      </small>
     </div>
     <div class="form-group mb-4">
-      <label for="confirm" class="form-label mt-4">Email address</label>
+      <label for="confirm" class="form-label mt-4">Confirm</label>
       <input
         ngModel
+        #confirm="ngModel"
         name="confirm"
         type="password"
         class="form-control"
         id="confirm"
         placeholder="Confirm password"
+        required
+        minlength="3"
+        [class.is-invalid]="confirm.touched && confirm.invalid"
+        [class.is-valid]="confirm.touched && confirm.valid"
       >
+      <small
+        id="confirmErrorRequired"
+        class="form-text"
+        [class.invalid-feedback]="confirm.touched && confirm.invalid"
+        *ngIf="confirm.touched && confirm.hasError('required')"
+      >
+        Mot de passe obligatoire
+      </small>
+      <small
+        id="confirmErrorMinLength"
+        class="form-text"
+        [class.invalid-feedback]="confirm.touched && confirm.invalid"
+        *ngIf="confirm.touched && confirm.hasError('minlength')"
+      >
+        La confirmation doit faire plus de 3 caractères
+      </small>
     </div>
     <button class="btn btn-success" [disabled]="form.invalid">Inscription</button>
   </form>
