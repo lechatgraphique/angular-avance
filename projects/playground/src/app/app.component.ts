@@ -1,4 +1,5 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,7 @@ import {Component, ElementRef, ViewChild} from '@angular/core';
 export class AppComponent {
   @ViewChild('email') emailInput?: ElementRef<HTMLInputElement>
 
-  onSubmit(event: SubmitEvent): void {
-    event.preventDefault();
-    console.log(this.emailInput?.nativeElement.value);
+  onSubmit(form: NgForm): void {
+    console.log(form);
   }
 }
