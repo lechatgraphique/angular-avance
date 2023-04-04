@@ -4,7 +4,7 @@
     <pre>{{form.value | json}}</pre>
     <pre>{{form.valid | json}}</pre>
   </div>
-  <form #form="ngForm" (submit)="onSubmit(form)">
+  <form #form="ngForm" (submit)="onSubmit(form)" [ngFormOptions]="{updateOn: 'blur'}">
     <div class="form-group mb-2">
       <label for="email" class="form-label mt-4">Email address</label>
       <input
@@ -20,6 +20,7 @@
         email
         [class.is-invalid]="email.touched && email.invalid"
         [class.is-valid]="email.touched && email.valid"
+        [ngModelOptions]="{updateOn: 'change'}"
       >
       <small
         id="emailErrorRequired"
@@ -52,6 +53,7 @@
         minlength="3"
         [class.is-invalid]="password.touched && password.invalid"
         [class.is-valid]="password.touched && password.valid"
+        [ngModelOptions]="{updateOn: 'blur'}"
       >
       <small
         id="passwordErrorRequired"
@@ -84,6 +86,7 @@
         minlength="3"
         [class.is-invalid]="confirm.touched && confirm.invalid"
         [class.is-valid]="confirm.touched && confirm.valid"
+        [ngModelOptions]="{updateOn: 'blur'}"
       >
       <small
         id="confirmErrorRequired"
