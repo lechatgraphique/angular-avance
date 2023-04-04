@@ -10,6 +10,6 @@ export class AppComponent {
   @ViewChild('email') emailInput?: ElementRef<HTMLInputElement>
 
   onSubmit(form: NgForm): void {
-    console.log(form);
+    console.log(form.value);
   }
 }
