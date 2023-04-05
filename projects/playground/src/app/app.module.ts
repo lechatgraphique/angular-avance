@@ -4,11 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { FormsModule } from "@angular/forms";
 import { BannedEmailDirective } from './validators/banned-email.directive';
+import { UniqueEmailValidator } from './validators/unique-email-validator.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BannedEmailDirective
+    BannedEmailDirective,
+    UniqueEmailValidator
   ],
   imports: [
     BrowserModule,

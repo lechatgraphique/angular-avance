@@ -19,10 +19,15 @@
         required
         email
         bannedEmail="test@test.com"
+        uniqueEmail
         [class.is-invalid]="email.touched && email.invalid"
         [class.is-valid]="email.touched && email.valid"
         [ngModelOptions]="{updateOn: 'change'}"
       >
+      <p *ngIf="email.pending" class="text-info py-2">
+        <span class="spinner-border spinner-border-sm" role="status"></span>
+        Vérification en cours...
+      </p>
       <small
         id="emailErrorBanned"
         class="form-text"
