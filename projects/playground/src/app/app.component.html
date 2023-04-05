@@ -18,10 +18,19 @@
         placeholder="Enter email"
         required
         email
+        bannedEmail="test@test.com"
         [class.is-invalid]="email.touched && email.invalid"
         [class.is-valid]="email.touched && email.valid"
         [ngModelOptions]="{updateOn: 'change'}"
       >
+      <small
+        id="emailErrorBanned"
+        class="form-text"
+        [class.invalid-feedback]="email.touched && email.invalid"
+        *ngIf="email.touched && email.hasError('bannedEmail')"
+      >
+        Adresse email {{email.getError('bannedEmail')}} interdite
+      </small>
       <small
         id="emailErrorRequired"
         class="form-text"
