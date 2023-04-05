@@ -6,13 +6,15 @@ import { FormsModule } from "@angular/forms";
 import { BannedEmailDirective } from './validators/banned-email.directive';
 import { UniqueEmailValidator } from './validators/unique-email-validator.directive';
 import { ConfirmPasswordValidator } from './validators/confirm-password-validator.directive';
+import { ColorPickerComponent } from './components/color-picker/color-picker.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BannedEmailDirective,
     UniqueEmailValidator,
-    ConfirmPasswordValidator
+    ConfirmPasswordValidator,
+    ColorPickerComponent
   ],
   imports: [
     BrowserModule,

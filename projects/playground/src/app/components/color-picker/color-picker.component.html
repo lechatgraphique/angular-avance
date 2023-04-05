@@ -1,0 +1,29 @@
+<div class="d-flex gap-2">
+  <div class="card">
+    <div
+      class="card-body"
+      [style.background-color]="'blue'"
+      [class.selected]="color === 'blue'"
+      (click)="color = 'blue'"
+    >
+    </div>
+  </div>
+  <div class="card">
+    <div
+      class="card-body"
+      [style.background-color]="'red'"
+      [class.selected]="color === 'red'"
+      (click)="color = 'red'"
+    >
+    </div>
+  </div>
+  <div class="card">
+    <div
+      class="card-body"
+      [style.background-color]="'purple'"
+      [class.selected]="color === 'purple'"
+      (click)="color = 'purple'"
+      >
+    </div>
+  </div>
+</div>
