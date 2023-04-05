@@ -2,7 +2,7 @@ import {Directive, Input} from '@angular/core';
 import {AbstractControl, NG_VALIDATORS, ValidationErrors, Validator} from "@angular/forms";
 
 @Directive({
-  selector: '[bannedEmail]',
+  selector: '[ngModel][bannedEmail], [formControl][bannedEmail], [formControlName][bannedEmail]',
   providers: [
     {
       provide: NG_VALIDATORS,
