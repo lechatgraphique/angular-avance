@@ -1,9 +1,9 @@
 
 <div class="container">
   <h1>Hello Playground Reactive Form</h1>
-  <form (submit)="onSubmit()">
+  <form [formGroup]="inscription" (submit)="onSubmit()">
     <input
-      [formControl]="email"
+      formControlName="email"
       type="email"
       name="email"
       id="email"
@@ -21,7 +21,7 @@
     <small class="invalid-feedback" *ngIf="email.touched && email.hasError('bannedEmail')">Adresse interdite</small>
     <small class="invalid-feedback" *ngIf="email.touched && email.hasError('uniqueEmail')">Adresse est déjà utilisée</small>
     <input
-      [formControl]="password"
+      formControlName="password"
       type="password"
       name="password"
       id="password"
@@ -33,7 +33,7 @@
     <small class="invalid-feedback" *ngIf="password.touched && password.hasError('required')">Mot de passe obligatoire</small>
     <small class="invalid-feedback" *ngIf="password.touched && password.hasError('minlength')">Doit avoir au minimum 3 caractères</small>
     <input
-      [formControl]="confirm"
+      formControlName="confirm"
       type="password"
       name="confirm"
       id="confirm"
