@@ -15,30 +15,35 @@ export class AppComponent {
     ], [
       uniqueEmailValidator
     ]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.minLength(3)
-    ]),
-    confirm: new FormControl('', [
-      Validators.required,
-      Validators.minLength(3)
-    ])
-  },{
-    validators: [
-      confirmPasswordValidator
-    ]
+    security: new FormGroup({
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3)
+      ]),
+      confirm: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3)
+      ])
+    },{
+      validators: [
+        confirmPasswordValidator
+      ]
+    })
   });
 
   get email(): FormControl {
     return this.inscription.controls.email;
   }
 
+  get security(): FormGroup<{ confirm: FormControl<string | null>; password: FormControl<string | null> }> {
+    return this.inscription.controls.security;
+  }
   get password(): FormControl {
-    return this.inscription.controls.password;
+    return this.security.controls.password;
   }
 
   get confirm(): FormControl {
-    return this.inscription.controls.confirm;
+    return this.security.controls.confirm;
   }
 
   onSubmit(): void {

@@ -20,31 +20,34 @@
     <small class="invalid-feedback" *ngIf="email.touched && email.hasError('email')">Adresse invalide</small>
     <small class="invalid-feedback" *ngIf="email.touched && email.hasError('bannedEmail')">Adresse interdite</small>
     <small class="invalid-feedback" *ngIf="email.touched && email.hasError('uniqueEmail')">Adresse est déjà utilisée</small>
-    <input
-      formControlName="password"
-      type="password"
-      name="password"
-      id="password"
-      class="form-control mb-2"
-      placeholder="Votre mot de passe"
-      [class.is-invalid]="password.touched && password.invalid"
-      [class.is-valid]="password.touched && password.value"
-    >
-    <small class="invalid-feedback" *ngIf="password.touched && password.hasError('required')">Mot de passe obligatoire</small>
-    <small class="invalid-feedback" *ngIf="password.touched && password.hasError('minlength')">Doit avoir au minimum 3 caractères</small>
-    <input
-      formControlName="confirm"
-      type="password"
-      name="confirm"
-      id="confirm"
-      class="form-control mb-2"
-      placeholder="Votre confirmation de mot de passe"
-      [class.is-invalid]="confirm.touched && confirm.invalid"
-      [class.is-valid]="confirm.touched && confirm.value"
-    >
-    <small class="invalid-feedback" *ngIf="confirm.touched && confirm.hasError('required')">Confirmation obligatoire</small>
-    <small class="invalid-feedback" *ngIf="confirm.touched && confirm.hasError('minlength')">Doit avoir au minimum 3 caractères</small>
-    <small class="invalid-feedback" *ngIf="confirm.touched && confirm.hasError('confirmPassword')">Mot de passe doit être identique</small>
+
+    <div formGroupName="security">
+      <input
+        formControlName="password"
+        type="password"
+        name="password"
+        id="password"
+        class="form-control mb-2"
+        placeholder="Votre mot de passe"
+        [class.is-invalid]="password.touched && password.invalid"
+        [class.is-valid]="password.touched && password.value"
+      >
+      <small class="invalid-feedback" *ngIf="password.touched && password.hasError('required')">Mot de passe obligatoire</small>
+      <small class="invalid-feedback" *ngIf="password.touched && password.hasError('minlength')">Doit avoir au minimum 3 caractères</small>
+      <input
+        formControlName="confirm"
+        type="password"
+        name="confirm"
+        id="confirm"
+        class="form-control mb-2"
+        placeholder="Votre confirmation de mot de passe"
+        [class.is-invalid]="confirm.touched && confirm.invalid"
+        [class.is-valid]="confirm.touched && confirm.value"
+      >
+      <small class="invalid-feedback" *ngIf="confirm.touched && confirm.hasError('required')">Confirmation obligatoire</small>
+      <small class="invalid-feedback" *ngIf="confirm.touched && confirm.hasError('minlength')">Doit avoir au minimum 3 caractères</small>
+      <small class="invalid-feedback" *ngIf="confirm.touched && confirm.hasError('confirmPassword')">Mot de passe doit être identique</small>
+    </div>
     <button class="btn btn-success">Inscription</button>
   </form>
 </div>
