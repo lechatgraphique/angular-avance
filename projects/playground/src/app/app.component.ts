@@ -1,5 +1,13 @@
 import {Component} from '@angular/core';
-import {AbstractControl, AsyncValidatorFn, FormControl, FormGroup, ValidatorFn, Validators} from "@angular/forms";
+import {
+  AbstractControl,
+  AsyncValidatorFn,
+  FormArray,
+  FormControl,
+  FormGroup,
+  ValidatorFn,
+  Validators
+} from "@angular/forms";
 
 @Component({
   selector: 'app-root',
@@ -28,9 +36,19 @@ export class AppComponent {
       validators: [
         confirmPasswordValidator
       ]
-    })
+    }),
+    languages: new FormArray<FormControl>([
+      new FormControl(),
+      new FormControl()
+    ])
   });
 
+  addLanguage(): void {
+    this.languages.push(new FormControl());
+  }
+  get languages(): FormArray<FormControl> {
+    return this.inscription.controls.languages;
+  }
   get email(): FormControl {
     return this.inscription.controls.email;
   }

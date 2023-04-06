@@ -48,6 +48,17 @@
       <small class="invalid-feedback" *ngIf="confirm.touched && confirm.hasError('minlength')">Doit avoir au minimum 3 caractères</small>
       <small class="invalid-feedback" *ngIf="confirm.touched && confirm.hasError('confirmPassword')">Mot de passe doit être identique</small>
     </div>
+    <h2>
+      Vos languages préf. :
+      <button type="button" class="btn btn-info" (click)="addLanguage()">Ajouter</button>
+    </h2>
+    <div class="alert alert-dismissible alert-primary" *ngIf="languages.controls.length === 0">
+      <strong>Oh snap!</strong> Vous n'avez pas de languages. Ajouter au moins deux languages
+    </div>
+    <div class="row" *ngFor="let language of languages.controls; let i = index">
+      <input [formControl]="language" class="form-control mb-2 col" type="text" name="{{language}}" id="{{language}}">
+      <button type="button" class="btn btn-danger col-2" (click)="languages.removeAt(i)">Supprimer</button>
+    </div>
     <button class="btn btn-success">Inscription</button>
   </form>
 </div>
