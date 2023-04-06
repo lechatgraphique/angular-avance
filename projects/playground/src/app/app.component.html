@@ -2,13 +2,14 @@
   <h1>Hello Playground</h1>
   <div class="bg-light">
     <pre>{{form.value | json}}</pre>
+    <pre>{{data | json}}</pre>
     <pre>{{form.valid | json}}</pre>
   </div>
   <form #form="ngForm" (submit)="onSubmit(form)" [ngFormOptions]="{updateOn: 'blur'}">
     <div class="form-group mb-2">
       <label for="email" class="form-label mt-4">Email address</label>
       <input
-        ngModel
+        [(ngModel)]="data.email"
         #email="ngModel"
         name="email"
         type="email"
@@ -57,7 +58,7 @@
       <div class="form-group mb-2">
         <label for="password" class="form-label mt-4">Password</label>
         <input
-          ngModel
+          [(ngModel)]="data.password"
           #password="ngModel"
           name="password"
           type="password"
@@ -90,7 +91,7 @@
       <div class="form-group mb-4">
         <label for="confirm" class="form-label mt-4">Confirm</label>
         <input
-          ngModel
+          [(ngModel)]="data.confirm"
           #confirm="ngModel"
           name="confirm"
           type="password"
@@ -131,7 +132,7 @@
     </div>
     <div class="form-group mb-4">
       <label for="password" class="form-label mt-4">Pref. color ?</label>
-      <app-color-picker ngModel [ngModelOptions]="{name: 'color'}"></app-color-picker>
+      <app-color-picker [(ngModel)]="data.color" [ngModelOptions]="{name: 'color'}"></app-color-picker>
     </div>
     <button class="btn btn-success" [disabled]="form.invalid">Inscription</button>
   </form>
