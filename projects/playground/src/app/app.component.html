@@ -55,8 +55,12 @@
     <div class="alert alert-dismissible alert-primary" *ngIf="languages.controls.length === 0">
       <strong>Oh snap!</strong> Vous n'avez pas de languages. Ajouter au moins deux languages
     </div>
-    <div class="row" *ngFor="let language of languages.controls; let i = index">
-      <input [formControl]="language" class="form-control mb-2 col" type="text" name="{{language}}" id="{{language}}">
+    <div class="row" [formGroup]="group" *ngFor="let group of languages.controls; let i = index">
+      <input formControlName="name" class="form-control mb-2 col" type="text" name="{{group}}" id="{{group}}">
+      <select formControlName="level" class="form-control col">
+        <option value="debutant">débutant</option>
+        <option value="confirme">confirmé</option>
+      </select>
       <button type="button" class="btn btn-danger col-2" (click)="languages.removeAt(i)">Supprimer</button>
     </div>
     <button class="btn btn-success">Inscription</button>

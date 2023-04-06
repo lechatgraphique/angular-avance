@@ -37,16 +37,16 @@ export class AppComponent {
         confirmPasswordValidator
       ]
     }),
-    languages: new FormArray<FormControl>([
-      new FormControl(),
-      new FormControl()
-    ])
+    languages: new FormArray<FormGroup>([]),
   });
 
   addLanguage(): void {
-    this.languages.push(new FormControl());
+    this.languages.push(new FormGroup({
+      name: new FormControl(),
+      level: new FormControl('debutant')
+    }));
   }
-  get languages(): FormArray<FormControl> {
+  get languages(): FormArray<FormGroup> {
     return this.inscription.controls.languages;
   }
   get email(): FormControl {
