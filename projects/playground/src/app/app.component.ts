@@ -38,6 +38,7 @@ export class AppComponent {
       ]
     }),
     languages: new FormArray<FormGroup>([]),
+    favoriteColor: new FormControl()
   });
 
   ngOnInit():void {
@@ -59,7 +60,8 @@ export class AppComponent {
           name: 'PHP',
           level: 'confirme'
         }
-      ]
+      ],
+      favoriteColor: 'purple'
     });
 
     this.inscription.patchValue({
