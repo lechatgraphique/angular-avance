@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {AbstractControl, FormControl, ValidatorFn} from "@angular/forms";
+import {FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-root',
@@ -7,18 +7,10 @@ import {AbstractControl, FormControl, ValidatorFn} from "@angular/forms";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  email = new FormControl();
+  email = new FormControl('', [
+    Validators.required,
+    Validators.email
+  ]);
 
-  ngOnInit(): void {
-    this.email.addValidators(requiredValidator);
-    this.email.setValue('hello@lechatgraphique.fr');
-    console.log(this.email.valid);
-  }
 }
 
-const requiredValidator: ValidatorFn = (control: AbstractControl) => {
-  if (control.value === '') {
-    return { required: true};
-  }
-  return null;
-}

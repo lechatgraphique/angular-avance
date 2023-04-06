@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { FormsModule } from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { BannedEmailDirective } from './validators/banned-email.directive';
 import { UniqueEmailValidator } from './validators/unique-email-validator.directive';
 import { ConfirmPasswordValidator } from './validators/confirm-password-validator.directive';
@@ -20,7 +20,8 @@ import { InscriptionComponent } from './inscription/inscription.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
