@@ -14,6 +14,10 @@ export class AppComponent {
   ], [
     uniqueEmailValidator
   ]);
+  password = new  FormControl('', [
+    Validators.required,
+    Validators.minLength(3)
+  ])
 }
 
 const createBannedEmailValidator= (bannedEmail: string): ValidatorFn => {
@@ -35,4 +39,3 @@ const uniqueEmailValidator: AsyncValidatorFn = (control:AbstractControl<string>)
       return null;
   })
 }
-

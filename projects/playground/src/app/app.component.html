@@ -10,6 +10,7 @@
       class="form-control mb-2"
       placeholder="Votre adresse email"
       [class.is-invalid]="email.touched && email.invalid"
+      [class.is-valid]="email.touched && email.value"
     >
     <p class="text-info" *ngIf="email.pending">
       <span class="spinner-border spinner-border-sm"></span>
@@ -20,18 +21,24 @@
     <small class="invalid-feedback" *ngIf="email.touched && email.hasError('bannedEmail')">Adresse interdite</small>
     <small class="invalid-feedback" *ngIf="email.touched && email.hasError('uniqueEmail')">Adresse est déjà utilisée</small>
     <input
+      [formControl]="password"
       type="password"
       name="password"
       id="password"
       class="form-control mb-2"
-      placeholder="Votre adresse email"
+      placeholder="Votre mot de passe"
+      [class.is-invalid]="password.touched && password.invalid"
+      [class.is-valid]="password.touched && password.value"
     >
+    <small class="invalid-feedback" *ngIf="password.touched && password.hasError('required')">Mot de passe obligatoire</small>
+    <small class="invalid-feedback" *ngIf="password.touched && password.hasError('minlength')">Doit avoir au minimum 3 caractères</small>
+
     <input
       type="password"
       name="confirm"
       id="confirm"
       class="form-control mb-2"
-      placeholder="Votre adresse email"
+      placeholder="Votre confirmation de mot de passe"
     >
     <button class="btn btn-success">Inscription</button>
   </form>
