@@ -55,6 +55,7 @@
     <div class="alert alert-dismissible alert-primary" *ngIf="languages.controls.length === 0">
       <strong>Oh snap!</strong> Vous n'avez pas de languages. Ajouter au moins deux languages
     </div>
+    <p class="text-danger" *ngIf="languages.hasError('mustHave2Languages')"> Vous devez avoir 2 languages au minimum</p>
     <div class="row" [formGroup]="group" *ngFor="let group of languages.controls; let i = index">
       <input formControlName="name" class="form-control mb-2 col" type="text" name="{{group}}" id="{{group}}">
       <select formControlName="level" class="form-control col">

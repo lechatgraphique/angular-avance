@@ -44,6 +44,13 @@ export class AppComponent {
   ngOnInit():void {
     this.inscription.controls.favoriteColor.valueChanges.subscribe((value) => {
       console.log('La couler à changer : ', value);
+      if (value === 'purple') {
+        this.languages.addValidators(mustHave2LanguagesValidator);
+        this.languages.updateValueAndValidity();
+        return;
+      }
+      this.languages.removeValidators(mustHave2LanguagesValidator);
+      this.languages.updateValueAndValidity();
     })
   }
 
@@ -74,6 +81,15 @@ export class AppComponent {
   onSubmit(): void {
     console.log(this.inscription.value);
   }
+}
+
+const mustHave2LanguagesValidator: ValidatorFn = (control: AbstractControl) => {
+  const array = control as FormArray;
+
+  if (array.length < 2) {
+    return { mustHave2Languages: true };
+  }
+  return null;
 }
 
 const confirmPasswordValidator: ValidatorFn = (control: AbstractControl<{password: FormControl<string>, confirm: FormControl<string>}>) => {
