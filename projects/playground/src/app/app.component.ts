@@ -1,5 +1,5 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
-import {NgForm} from "@angular/forms";
+import {Component} from '@angular/core';
+import {AbstractControl, FormControl, ValidatorFn} from "@angular/forms";
 
 @Component({
   selector: 'app-root',
@@ -7,14 +7,18 @@ import {NgForm} from "@angular/forms";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  @ViewChild('email') emailInput?: ElementRef<HTMLInputElement>
-  data = {
-    email: 'hello@lechatgraphique.fr',
-    color: 'blue',
-    password: 'azerty',
-    confirm: 'azerty'
+  email = new FormControl();
+
+  ngOnInit(): void {
+    this.email.addValidators(requiredValidator);
+    this.email.setValue('hello@lechatgraphique.fr');
+    console.log(this.email.valid);
   }
-  onSubmit(form: NgForm): void {
-    console.log(form.value);
+}
+
+const requiredValidator: ValidatorFn = (control: AbstractControl) => {
+  if (control.value === '') {
+    return { required: true};
   }
+  return null;
 }

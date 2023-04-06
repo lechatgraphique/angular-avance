@@ -7,6 +7,7 @@ import { BannedEmailDirective } from './validators/banned-email.directive';
 import { UniqueEmailValidator } from './validators/unique-email-validator.directive';
 import { ConfirmPasswordValidator } from './validators/confirm-password-validator.directive';
 import { ColorPickerComponent } from './components/color-picker/color-picker.component';
+import { InscriptionComponent } from './inscription/inscription.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ColorPickerComponent } from './components/color-picker/color-picker.com
     BannedEmailDirective,
     UniqueEmailValidator,
     ConfirmPasswordValidator,
-    ColorPickerComponent
+    ColorPickerComponent,
+    InscriptionComponent
   ],
   imports: [
     BrowserModule,
