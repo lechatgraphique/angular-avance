@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {AbstractControl, AsyncValidatorFn, FormControl, ValidatorFn, Validators} from "@angular/forms";
+import {AbstractControl, AsyncValidatorFn, FormControl, FormGroup, ValidatorFn, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-root',
@@ -7,17 +7,39 @@ import {AbstractControl, AsyncValidatorFn, FormControl, ValidatorFn, Validators}
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  email = new FormControl('', [
-    Validators.required,
-    Validators.email,
-    createBannedEmailValidator('test@test.com'),
-  ], [
-    uniqueEmailValidator
-  ]);
-  password = new  FormControl('', [
-    Validators.required,
-    Validators.minLength(3)
-  ])
+  inscription = new FormGroup({
+    email: new FormControl('', [
+      Validators.required,
+      Validators.email,
+      createBannedEmailValidator('test@test.com'),
+    ], [
+      uniqueEmailValidator
+    ]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3)
+    ]),
+    confirm: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3)
+    ])
+  });
+
+  get email(): FormControl {
+    return this.inscription.controls.email;
+  }
+
+  get password(): FormControl {
+    return this.inscription.controls.password;
+  }
+
+  get confirm(): FormControl {
+    return this.inscription.controls.confirm;
+  }
+
+  onSubmit(): void {
+    console.log(this.inscription.value);
+  }
 }
 
 const createBannedEmailValidator= (bannedEmail: string): ValidatorFn => {
@@ -38,4 +60,5 @@ const uniqueEmailValidator: AsyncValidatorFn = (control:AbstractControl<string>)
       }
       return null;
   })
+
 }

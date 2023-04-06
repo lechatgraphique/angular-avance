@@ -1,7 +1,7 @@
 
 <div class="container">
   <h1>Hello Playground Reactive Form</h1>
-  <form>
+  <form (submit)="onSubmit()">
     <input
       [formControl]="email"
       type="email"
@@ -32,14 +32,18 @@
     >
     <small class="invalid-feedback" *ngIf="password.touched && password.hasError('required')">Mot de passe obligatoire</small>
     <small class="invalid-feedback" *ngIf="password.touched && password.hasError('minlength')">Doit avoir au minimum 3 caractères</small>
-
     <input
+      [formControl]="confirm"
       type="password"
       name="confirm"
       id="confirm"
       class="form-control mb-2"
       placeholder="Votre confirmation de mot de passe"
+      [class.is-invalid]="confirm.touched && confirm.invalid"
+      [class.is-valid]="confirm.touched && confirm.value"
     >
+    <small class="invalid-feedback" *ngIf="confirm.touched && confirm.hasError('required')">Confirmation obligatoire</small>
+    <small class="invalid-feedback" *ngIf="confirm.touched && confirm.hasError('minlength')">Doit avoir au minimum 3 caractères</small>
     <button class="btn btn-success">Inscription</button>
   </form>
 </div>
