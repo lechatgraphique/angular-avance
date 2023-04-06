@@ -42,31 +42,9 @@ export class AppComponent {
   });
 
   ngOnInit():void {
-    this.addLanguage();
-    this.addLanguage();
-
-    this.inscription.setValue({
-      email: 'hello@lechatgraphique',
-      security: {
-        password: 'AZERTY',
-        confirm: 'AZERTY'
-      },
-      languages: [
-        {
-          name: 'PHP',
-          level: 'debutant'
-        },
-        {
-          name: 'PHP',
-          level: 'confirme'
-        }
-      ],
-      favoriteColor: 'purple'
-    });
-
-    this.inscription.patchValue({
-      email: 'hello@lechatgraphique'
-    });
+    this.inscription.controls.favoriteColor.valueChanges.subscribe((value) => {
+      console.log('La couler à changer : ', value);
+    })
   }
 
   addLanguage(): void {
