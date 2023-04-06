@@ -13,6 +13,7 @@
     >
     <small class="invalid-feedback" *ngIf="email.touched && email.hasError('required')">Adresse obligatoire</small>
     <small class="invalid-feedback" *ngIf="email.touched && email.hasError('email')">Adresse invalide</small>
+    <small class="invalid-feedback" *ngIf="email.touched && email.hasError('bannedEmail')">Adresse interdite</small>
     <input
       type="password"
       name="password"

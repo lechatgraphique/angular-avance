@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FormControl, Validators} from "@angular/forms";
+import {AbstractControl, FormControl, ValidatorFn, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-root',
@@ -9,8 +9,17 @@ import {FormControl, Validators} from "@angular/forms";
 export class AppComponent {
   email = new FormControl('', [
     Validators.required,
-    Validators.email
+    Validators.email,
+    createBannedEmailValidator('test@test.com')
   ]);
-
 }
+const createBannedEmailValidator= (bannedEmail: string): ValidatorFn => {
+  return (control: AbstractControl<string>) => {
+    if (control.value === bannedEmail) {
+      return {bannedEmail: true};
+    }
+    return null;
+  };
+}
+
 
