@@ -44,6 +44,7 @@
     >
     <small class="invalid-feedback" *ngIf="confirm.touched && confirm.hasError('required')">Confirmation obligatoire</small>
     <small class="invalid-feedback" *ngIf="confirm.touched && confirm.hasError('minlength')">Doit avoir au minimum 3 caractères</small>
+    <small class="invalid-feedback" *ngIf="confirm.touched && confirm.hasError('confirmPassword')">Mot de passe doit être identique</small>
     <button class="btn btn-success">Inscription</button>
   </form>
 </div>

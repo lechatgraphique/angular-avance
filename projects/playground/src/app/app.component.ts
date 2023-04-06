@@ -23,6 +23,10 @@ export class AppComponent {
       Validators.required,
       Validators.minLength(3)
     ])
+  },{
+    validators: [
+      confirmPasswordValidator
+    ]
   });
 
   get email(): FormControl {
@@ -42,7 +46,19 @@ export class AppComponent {
   }
 }
 
-const createBannedEmailValidator= (bannedEmail: string): ValidatorFn => {
+const confirmPasswordValidator: ValidatorFn = (control: AbstractControl<{password: FormControl<string>, confirm: FormControl<string>}>) => {
+  const password = control.get('password');
+  const confirm = control.get('confirm');
+
+  if (password?.value !== confirm?.value) {
+    confirm?.setErrors({ confirmPassword: true });
+    return { confirmPassword: true };
+  }
+  return null;
+}
+
+const createBannedEmailValidator = (bannedEmail: string): ValidatorFn => {
+
   return (control: AbstractControl<string>) => {
     if (control.value === bannedEmail) {
       return {bannedEmail: true};
