@@ -40,8 +40,35 @@ export class AppComponent {
     languages: new FormArray<FormGroup>([]),
   });
 
+  ngOnInit():void {
+    this.addLanguage();
+    this.addLanguage();
+
+    this.inscription.setValue({
+      email: 'hello@lechatgraphique',
+      security: {
+        password: 'AZERTY',
+        confirm: 'AZERTY'
+      },
+      languages: [
+        {
+          name: 'PHP',
+          level: 'debutant'
+        },
+        {
+          name: 'PHP',
+          level: 'confirme'
+        }
+      ]
+    });
+
+    this.inscription.patchValue({
+      email: 'hello@lechatgraphique'
+    });
+  }
+
   addLanguage(): void {
-    this.languages.push(new FormGroup({
+    this.languages.push(new FormGroup<{name: FormControl<string | null>, level: FormControl<string | null>}>({
       name: new FormControl(),
       level: new FormControl('debutant')
     }));
