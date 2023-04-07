@@ -40,7 +40,6 @@ export class AppComponent {
     languages: new FormArray<FormGroup>([]),
     favoriteColor: new FormControl()
   });
-
   ngOnInit():void {
     this.inscription.controls.favoriteColor.valueChanges.subscribe((value) => {
       console.log('La couler à changer : ', value);
@@ -60,6 +59,11 @@ export class AppComponent {
       level: new FormControl('debutant')
     }));
   }
+
+  get length(): string {
+    return this.password.getError('minlength')['requiredLength'];
+  }
+
   get languages(): FormArray<FormGroup> {
     return this.inscription.controls.languages;
   }
