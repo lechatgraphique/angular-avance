@@ -8,6 +8,8 @@ import { UniqueEmailValidator } from './validators/unique-email-validator.direct
 import { ConfirmPasswordValidator } from './validators/confirm-password-validator.directive';
 import { ColorPickerComponent } from './components/color-picker/color-picker.component';
 import { InscriptionComponent } from './inscription/inscription.component';
+import { ReactiveInscriptionComponent } from './reactive-inscription/reactive-inscription.component';
+import { RecipeComponent } from './components/recipe/recipe.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { InscriptionComponent } from './inscription/inscription.component';
     UniqueEmailValidator,
     ConfirmPasswordValidator,
     ColorPickerComponent,
-    InscriptionComponent
+    InscriptionComponent,
+    ReactiveInscriptionComponent,
+    RecipeComponent
   ],
   imports: [
     BrowserModule,

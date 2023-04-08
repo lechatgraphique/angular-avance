@@ -1,0 +1,72 @@
+<form [formGroup]="formRecipe" (submit)="onSubmit()" class="row">
+  <div class="col-5">
+    <div class="form-group mb-3">
+      <fieldset>
+        <label class="form-label" for="title">Nom de la recette</label>
+        <input
+          class="form-control"
+          type="text"
+          id="title"
+          placeholder="Nom de votre recette"
+          formControlName="title"
+          required
+          minlength="10"
+          [class.is-invalid]="title.touched && title.invalid"
+        >
+      </fieldset>
+    </div>
+  </div>
+  <div class="col-12">
+    <h3>
+      Ingrédients
+      <button type="button" class="btn btn-info btn-sm ms-3" (click)="addIngredient()">Ajouter</button>
+    </h3>
+    <div
+      class="row"
+      [formGroup]="ingredient"
+      *ngFor="let ingredient of ingredients.controls; let i = index"
+    >
+      <div class="col-5">
+        <div class="form-group mb-3">
+          <fieldset>
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Nom de votre ingrédient"
+              formControlName="name"
+              required
+              minlength="3"
+              [class.is-invalid]="
+                ingredient.controls.name.touched &&
+                ingredient.controls.name.invalid"
+            >
+          </fieldset>
+        </div>
+      </div>
+      <div class="col-5">
+        <div class="form-group mb-3">
+          <fieldset>
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Nom de votre ingrédient"
+              formControlName="quantity"
+              required
+              [class.is-invalid]="
+              ingredient.controls.quantity.touched &&
+              ingredient.controls.quantity.invalid"
+            >
+          </fieldset>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="form-group mb-3">
+          <button type="button" class="btn btn-danger" (click)="removeIngredient(i)">Supprimer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <button class="btn btn-success">Enregister</button>
+  </div>
+</form>

@@ -1,0 +1,72 @@
+
+<div class="container">
+  <h1>Hello Playground Reactive Form</h1>
+  <form [formGroup]="inscription" (submit)="onSubmit()">
+    <input
+      formControlName="email"
+      type="email"
+      name="email"
+      id="email"
+      class="form-control mb-2"
+      placeholder="Votre adresse email"
+      [class.is-invalid]="email.touched && email.invalid"
+      [class.is-valid]="email.touched && email.value"
+    >
+    <p class="text-info" *ngIf="email.pending">
+      <span class="spinner-border spinner-border-sm"></span>
+      Vérification en cours...
+    </p>
+    <small class="invalid-feedback" *ngIf="email.touched && email.hasError('required')">Adresse obligatoire</small>
+    <small class="invalid-feedback" *ngIf="email.touched && email.hasError('email')">Adresse invalide</small>
+    <small class="invalid-feedback" *ngIf="email.touched && email.hasError('bannedEmail')">Adresse interdite</small>
+    <small class="invalid-feedback" *ngIf="email.touched && email.hasError('uniqueEmail')">Adresse est déjà utilisée</small>
+    <div formGroupName="security">
+      <input
+        formControlName="password"
+        type="password"
+        name="password"
+        id="password"
+        class="form-control mb-2"
+        placeholder="Votre mot de passe"
+        [class.is-invalid]="password.touched && password.invalid"
+        [class.is-valid]="password.touched && password.value"
+      >
+      <small class="invalid-feedback" *ngIf="password.touched && password.hasError('required')">Mot de passe obligatoire</small>
+      <small class="invalid-feedback" *ngIf="password.touched && password.hasError('minlength')">Doit avoir au minimum {{length}} caractères</small>
+      <input
+        formControlName="confirm"
+        type="password"
+        name="confirm"
+        id="confirm"
+        class="form-control mb-2"
+        placeholder="Votre confirmation de mot de passe"
+        [class.is-invalid]="confirm.touched && confirm.invalid"
+        [class.is-valid]="confirm.touched && confirm.value"
+      >
+
+      <small class="invalid-feedback" *ngIf="confirm.touched && confirm.hasError('required')">Confirmation obligatoire</small>
+      <small class="invalid-feedback" *ngIf="confirm.touched && confirm.hasError('minlength')">
+        Doit avoir au minimum {{length}} caractères
+      </small>
+      <small class="invalid-feedback" *ngIf="confirm.touched && confirm.hasError('confirmPassword')">Mot de passe doit être identique</small>
+    </div>
+    <h2>
+      Vos languages préf. :
+      <button type="button" class="btn btn-info" (click)="addLanguage()">Ajouter</button>
+    </h2>
+    <div class="alert alert-dismissible alert-primary" *ngIf="languages.controls.length === 0">
+      <strong>Oh snap!</strong> Vous n'avez pas de languages. Ajouter au moins deux languages
+    </div>
+    <p class="text-danger" *ngIf="languages.hasError('mustHave2Languages')"> Vous devez avoir 2 languages au minimum</p>
+    <div class="row" [formGroup]="group" *ngFor="let group of languages.controls; let i = index">
+      <input formControlName="name" class="form-control mb-2 col" type="text" name="{{group}}" id="{{group}}">
+      <select formControlName="level" class="form-control col">
+        <option value="debutant">débutant</option>
+        <option value="confirme">confirmé</option>
+      </select>
+      <button type="button" class="btn btn-danger col-2" (click)="languages.removeAt(i)">Supprimer</button>
+    </div>
+    <app-color-picker formControlName="favoriteColor"></app-color-picker>
+    <button class="btn btn-success">Inscription</button>
+  </form>
+</div>
