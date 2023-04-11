@@ -11,7 +11,8 @@ import { InscriptionComponent } from './inscription/inscription.component';
 import { ReactiveInscriptionComponent } from './reactive-inscription/reactive-inscription.component';
 import { RecipeComponent } from './components/recipe/recipe.component';
 import { MoviesComponent } from './components/movies/movies.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {MoviesKeyInterceptor} from "./interceptors/movies-key.interceptor";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,11 @@ import {HttpClientModule} from "@angular/common/http";
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: MoviesKeyInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

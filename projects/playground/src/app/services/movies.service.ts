@@ -14,7 +14,7 @@ export class MoviesService {
   getPopularMovies(): Observable<Movies> {
     return this.http
       .get<ApiPopularResponce>(
-        'https://api.themoviedb.org/3/movie/popular?api_key=9fcfd84b49752709e1ee2080f0448675&language=fr-FR&page=1'
+        'https://api.themoviedb.org/3/movie/popular?page=1'
       )
       .pipe(
         map((response) => {
@@ -33,7 +33,7 @@ export class MoviesService {
 
   getGenreMovies(): Observable<Genres> {
     return this.http.get<ApiResponseGenre>(
-      'https://api.themoviedb.org/3/genre/movie/list?api_key=9fcfd84b49752709e1ee2080f0448675&language=fr-FR'
+      'https://api.themoviedb.org/3/genre/movie/list'
     )
       .pipe(
         map((response) => {
