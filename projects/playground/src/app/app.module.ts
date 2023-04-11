@@ -10,6 +10,7 @@ import { ColorPickerComponent } from './components/color-picker/color-picker.com
 import { InscriptionComponent } from './inscription/inscription.component';
 import { ReactiveInscriptionComponent } from './reactive-inscription/reactive-inscription.component';
 import { RecipeComponent } from './components/recipe/recipe.component';
+import { MoviesComponent } from './components/movies/movies.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { RecipeComponent } from './components/recipe/recipe.component';
     ColorPickerComponent,
     InscriptionComponent,
     ReactiveInscriptionComponent,
-    RecipeComponent
+    RecipeComponent,
+    MoviesComponent
   ],
   imports: [
     BrowserModule,
