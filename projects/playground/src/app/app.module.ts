@@ -11,6 +11,7 @@ import { InscriptionComponent } from './inscription/inscription.component';
 import { ReactiveInscriptionComponent } from './reactive-inscription/reactive-inscription.component';
 import { RecipeComponent } from './components/recipe/recipe.component';
 import { MoviesComponent } from './components/movies/movies.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MoviesComponent } from './components/movies/movies.component';
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
