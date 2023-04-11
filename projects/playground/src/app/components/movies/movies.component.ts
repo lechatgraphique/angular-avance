@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {ApiMovie, ApiPopularResponce, Movies} from "../../types/types";
+import {ApiMovie, ApiPopularResponce, Genres, Movies} from "../../types/types";
 import {MoviesService} from "../../services/movies.service";
 
 @Component({
@@ -10,11 +10,17 @@ import {MoviesService} from "../../services/movies.service";
 })
 export class MoviesComponent implements OnInit {
   movies: Movies = [];
+  genres: Genres = []
   constructor(private moviesService: MoviesService) { }
 
   ngOnInit(): void {
     this.moviesService
       .getPopularMovies()
       .subscribe((movies) => this.movies = movies);
+
+    this.moviesService
+      .getGenreMovies()
+      .subscribe((genres) => this.genres = genres);
+
   }
 }

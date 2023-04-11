@@ -33,3 +33,18 @@ export type ApiMovie = {
   vote_count: number
 }
 
+export type Genre = {
+  id: number;
+  name: string;
+}
+
+export type Genres = Genre[];
+
+export type ApiResponseGenre = {
+  genres: Genres;
+}
+
+export type ApiGenre = {
+  id: number;
+  name: string;
+}

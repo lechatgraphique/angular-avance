@@ -1,4 +1,7 @@
 <div class="row">
+  <div class="my-3 text-center">
+    <span  *ngFor="let genre of genres" class="col badge m-2 rounded-pill bg-light">{{ genre.name }}</span>
+  </div>
   <div class="col-4" *ngFor="let movie of movies">
     <div class="card mb-3">
       <img src="{{movie.image}}" alt="" class="card-img-top">
@@ -7,6 +10,5 @@
         <p class="card-text">{{ movie.description }}</p>
       </div>
     </div>
-
   </div>
 </div>
