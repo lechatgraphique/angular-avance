@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ApiMovie, ApiPopularResponce, Genres, Movies} from "../../types/types";
 import {MoviesService} from "../../services/movies.service";
+import {forkJoin} from "rxjs";
 
 @Component({
   selector: 'app-movies',
@@ -14,13 +15,13 @@ export class MoviesComponent implements OnInit {
   constructor(private moviesService: MoviesService) { }
 
   ngOnInit(): void {
-    this.moviesService
-      .getPopularMovies()
-      .subscribe((movies) => this.movies = movies);
-
-    this.moviesService
-      .getGenreMovies()
-      .subscribe((genres) => this.genres = genres);
-
+    forkJoin([
+      this.moviesService.getGenreMovies(),
+      this.moviesService.getPopularMovies()
+    ])
+      .subscribe(([genre, movies]) => {
+        this.genres = genre;
+        this.movies = movies;
+      })
   }
 }
