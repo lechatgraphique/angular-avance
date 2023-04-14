@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Genres, Movies} from "../../types/types";
 import {MoviesService} from "../../services/movies.service";
-import {forkJoin, fromEvent, map} from "rxjs";
+import {filter, forkJoin, fromEvent, map, tap} from "rxjs";
 
 @Component({
   selector: 'app-movies',
@@ -30,19 +30,14 @@ export class MoviesComponent implements OnInit {
       map(() => {
         return document.documentElement.scrollTop + document.documentElement.clientHeight >=
           document.documentElement.scrollHeight - 300;
-      })
+      }),
+      tap((isBottom) => {
+        if(!isBottom) enBas = false;
+      }),
+      filter((isBottom) => isBottom === true),
+      filter(() => !enBas)
     )
-      .subscribe((isBottom) => {
-      if (!isBottom) {
-        enBas = false;
-        return;
-      }
-
-      if (enBas) {
-        return;
-      }
-
-      console.log(isBottom);
+      .subscribe(() => {
       enBas = true;
       this.page++;
       this.moviesService.getPopularMovies(this.page).subscribe((movies) => {
