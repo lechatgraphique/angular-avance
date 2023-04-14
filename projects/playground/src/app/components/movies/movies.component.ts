@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Genres, Movies} from "../../types/types";
 import {MoviesService} from "../../services/movies.service";
-import {forkJoin, fromEvent} from "rxjs";
+import {forkJoin, fromEvent, map} from "rxjs";
 
 @Component({
   selector: 'app-movies',
@@ -26,11 +26,13 @@ export class MoviesComponent implements OnInit {
 
     const scroll$ = fromEvent(window, 'scroll');
     let enBas = false;
-    scroll$.subscribe(() => {
-      const isBottom =
-        document.documentElement.scrollTop + document.documentElement.clientHeight >=
-        document.documentElement.scrollHeight - 300;
-
+    scroll$.pipe(
+      map(() => {
+        return document.documentElement.scrollTop + document.documentElement.clientHeight >=
+          document.documentElement.scrollHeight - 300;
+      })
+    )
+      .subscribe((isBottom) => {
       if (!isBottom) {
         enBas = false;
         return;
