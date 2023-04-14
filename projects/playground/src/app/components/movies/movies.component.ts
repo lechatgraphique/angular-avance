@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Genres, Movies} from "../../types/types";
 import {MoviesService} from "../../services/movies.service";
-import {forkJoin} from "rxjs";
+import {forkJoin, fromEvent} from "rxjs";
 
 @Component({
   selector: 'app-movies',
@@ -24,8 +24,9 @@ export class MoviesComponent implements OnInit {
         this.movies = movies;
       });
 
+    const scroll$ = fromEvent(window, 'scroll');
     let enBas = false;
-    window.addEventListener('scroll', () => {
+    scroll$.subscribe(() => {
       const isBottom =
         document.documentElement.scrollTop + document.documentElement.clientHeight >=
         document.documentElement.scrollHeight - 300;
@@ -45,7 +46,6 @@ export class MoviesComponent implements OnInit {
       this.moviesService.getPopularMovies(this.page).subscribe((movies) => {
         this.movies = [...this.movies, ...movies];
       })
-    });
-
+    })
   }
 }
