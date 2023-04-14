@@ -11,10 +11,10 @@ export class MoviesService {
 
   constructor(private http: HttpClient) { }
 
-  getPopularMovies(): Observable<Movies> {
+  getPopularMovies(page: number = 1): Observable<Movies> {
     return this.http
       .get<ApiPopularResponce>(
-        'https://api.themoviedb.org/3/movie/popular?page=1'
+        'https://api.themoviedb.org/3/movie/popular?page=' + page
       )
       .pipe(
         map((response) => {

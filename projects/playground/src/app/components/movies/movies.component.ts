@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {ApiMovie, ApiPopularResponce, Genres, Movies} from "../../types/types";
+import {Genres, Movies} from "../../types/types";
 import {MoviesService} from "../../services/movies.service";
 import {forkJoin} from "rxjs";
 
@@ -11,17 +10,42 @@ import {forkJoin} from "rxjs";
 })
 export class MoviesComponent implements OnInit {
   movies: Movies = [];
-  genres: Genres = []
+  genres: Genres = [];
+  page = 1;
   constructor(private moviesService: MoviesService) { }
 
   ngOnInit(): void {
     forkJoin([
       this.moviesService.getGenreMovies(),
-      this.moviesService.getPopularMovies()
+      this.moviesService.getPopularMovies(this.page)
     ])
       .subscribe(([genre, movies]) => {
         this.genres = genre;
         this.movies = movies;
+      });
+
+    let enBas = false;
+    window.addEventListener('scroll', () => {
+      const isBottom =
+        document.documentElement.scrollTop + document.documentElement.clientHeight >=
+        document.documentElement.scrollHeight - 300;
+
+      if (!isBottom) {
+        enBas = false;
+        return;
+      }
+
+      if (enBas) {
+        return;
+      }
+
+      console.log(isBottom);
+      enBas = true;
+      this.page++;
+      this.moviesService.getPopularMovies(this.page).subscribe((movies) => {
+        this.movies = [...this.movies, ...movies];
       })
+    });
+
   }
 }
