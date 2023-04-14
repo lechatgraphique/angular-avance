@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Genres, Movies} from "../../types/types";
 import {MoviesService} from "../../services/movies.service";
-import {filter, forkJoin, fromEvent, map, tap} from "rxjs";
+import {distinctUntilChanged, filter, forkJoin, fromEvent, map, tap} from "rxjs";
 
 @Component({
   selector: 'app-movies',
@@ -25,20 +25,15 @@ export class MoviesComponent implements OnInit {
       });
 
     const scroll$ = fromEvent(window, 'scroll');
-    let enBas = false;
     scroll$.pipe(
       map(() => {
         return document.documentElement.scrollTop + document.documentElement.clientHeight >=
           document.documentElement.scrollHeight - 300;
       }),
-      tap((isBottom) => {
-        if(!isBottom) enBas = false;
-      }),
+      distinctUntilChanged(),
       filter((isBottom) => isBottom === true),
-      filter(() => !enBas)
     )
       .subscribe(() => {
-      enBas = true;
       this.page++;
       this.moviesService.getPopularMovies(this.page).subscribe((movies) => {
         this.movies = [...this.movies, ...movies];
